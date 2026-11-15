@@ -1,0 +1,110 @@
+/* motion.css — elevato.co.kr 모션 동일 재현(측정값은 MOTION_SPEC.md). 2026-11-16 위젯 담당.
+   함께 읽을 것: vendor/lenis.css(Lenis 1.3.27 MIT), vendor/swiper-bundle.min.css(Swiper 11.1.1 MIT), motion.js
+   상태 클래스는 모두 <html>에 붙는다: m-scroll-down · m-scroll-up · m-header-invert · m-menu-open · m-mega-active · m-search-open · m-no-scroll
+   색·글꼴·배치는 홈페이지 담당 CSS가 정한다. 이 파일은 '움직임'과 그 움직임에 필요한 최소 상태만 가진다. */
+
+:root {
+  --m-ease: cubic-bezier(.1, .6, .4, 1);          /* elevato --ease */
+  --m-ease-page: cubic-bezier(.4, 0, .2, 1);      /* elevato PageIn/PageOut */
+  --m-out-quad: cubic-bezier(.25, .46, .45, .94); /* elevato jQuery swing → easeOutQuad(jquery.easing def) */
+  --m-menu-bg: rgba(255, 255, 255, .9);           /* elevato --bg-menu */
+  --m-header-h: 64.5px;                           /* motion.js가 실제 높이로 덮어씀(태블릿 zoom 대응, D264) */
+  --m-header-fg: #000;                            /* 헤더 글자·아이콘 색: 홈페이지 담당 CSS에서 color: var(--m-header-fg) 로 쓴다 */
+}
+html.m-header-invert { --m-header-fg: #fff; }
+html.m-menu-open, html.m-mega-active { --m-header-fg: #000; }
+
+/* 1) 페이지 진입: 흰 덮개 1 → 0, 0.9s cubic-bezier(.4,0,.2,1), DOMContentLoaded 시작 (elevato #pageOverlay.PageIn) */
+[data-m-pagein] { position: fixed; inset: 0; z-index: 9999; background: #fff; opacity: 1; pointer-events: none; }
+[data-m-pagein].is-in { animation: m-page-in .9s var(--m-ease-page) both; }
+@keyframes m-page-in { 0% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
+
+/* 2) 헤더: 고정. PC는 숨기지 않음. ≤1200px 에서만 아래로 스크롤 시 위로 숨김 0.3s var(--m-ease) */
+[data-m-header] { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; transition: all .3s var(--m-ease); }
+/* 헤더 안 글자·아이콘 색 전환은 즉시(elevato 실측 0ms) → 헤더 자식에 transition을 주지 않는다 */
+@media only screen and (max-width: 1200px) {
+  [data-m-header] { transition: transform .3s var(--m-ease); }
+  html.m-scroll-down:not(.m-menu-open) [data-m-header] { transform: translate3d(0, calc(-1 * var(--m-header-h)), 0); }
+}
+
+/* 3) PC 메가 메뉴: 즉시 표시(elevato transition all 0s). 배경판 높이 = 헤더 + 패널 + 40px, 색 rgba(255,255,255,.9) */
+[data-m-mega-bg] { position: absolute; top: 0; left: 0; width: 100%; height: var(--m-mega-h, 100%); transition: none; pointer-events: none; z-index: -1; }
+html.m-mega-active [data-m-mega-bg] { background-color: var(--m-menu-bg); pointer-events: auto; }
+[data-m-mega-panel] { opacity: 0; visibility: hidden; transition: none; }
+[data-m-mega-panel].is-show { opacity: 1; visibility: visible; }
+[data-m-mega-item] > a:hover { font-weight: bold; letter-spacing: -.4px; }   /* elevato 1차 메뉴 hover */
+
+/* 4) PC 검색 칸: 폭 0 → 10vw, 0.3s var(--m-ease) */
+[data-m-search] { width: 0; opacity: 0; visibility: hidden; overflow: hidden; transition: all .3s var(--m-ease); }
+html.m-search-open [data-m-search] { width: 10vw; opacity: 1; visibility: visible; }
+
+/* 5) 모바일 메뉴(≤1200): 전체 화면 판 opacity 0 → 1, 0.3s var(--m-ease) + 스크롤 잠금 */
+[data-m-menu] { position: fixed; top: 0; left: 0; width: 100%; height: calc(var(--vh, 1vh) * 100); background-color: var(--m-menu-bg); opacity: 0; visibility: hidden; transition: all .3s var(--m-ease); z-index: 98; }
+html.m-menu-open [data-m-menu] { opacity: 1; visibility: visible; }
+html.m-no-scroll, html.m-no-scroll body { overflow: hidden; }
+
+/* 6) 햄버거 → X (elevato .lines-button.x2 그대로: 20×20, 선 1px, 위·아래 ±8px) */
+[data-m-menu-toggle] .m-lines { position: relative; display: inline-block; width: 20px; height: 20px; cursor: pointer; }
+[data-m-menu-toggle] .m-lines i { position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background-color: var(--m-header-fg); transform-origin: 50% 50%; }
+[data-m-menu-toggle] .m-lines i:nth-child(1) { top: calc(50% - 8px); transition: top .2s .1s ease, transform .1s ease; }
+[data-m-menu-toggle] .m-lines i:nth-child(3) { top: calc(50% + 8px); transition: top .2s .1s ease, transform .1s ease; }
+html.m-menu-open [data-m-menu-toggle] .m-lines i:nth-child(1),
+html.m-menu-open [data-m-menu-toggle] .m-lines i:nth-child(3) { top: 50%; transition: top .1s ease, transform .1s .1s ease; }
+html.m-menu-open [data-m-menu-toggle] .m-lines i:nth-child(1) { transform: rotate3d(0, 0, 1, 45deg); }
+html.m-menu-open [data-m-menu-toggle] .m-lines i:nth-child(2) { background: transparent !important; transition: background .1s 0s ease; }
+html.m-menu-open [data-m-menu-toggle] .m-lines i:nth-child(3) { transform: rotate3d(0, 0, 1, -45deg); }
+
+/* 7) 접기·펼치기(elevato jQuery slideDown/slideUp = easeOutQuad, 재현은 motion.js). 닫힌 상태 */
+[data-m-acc-panel] { display: none; overflow: hidden; }
+[data-m-acc-panel].is-open { display: block; }
+[data-m-acc-icon] { display: inline-block; transition: transform .3s ease; }           /* 푸터·상세 화살표 0.3s ease */
+.is-active > [data-m-acc-icon], .is-active [data-m-acc-icon] { transform: rotate(180deg); }
+@media (min-width: 1201px) { [data-m-acc="footer"] [data-m-acc-panel] { display: block; } }  /* 푸터 접기는 ≤1200만 */
+
+/* 8) 상품 카드 hover: 뒷면 사진 opacity 0 → 1, 0.3s ease / 찜 아이콘 all 0.3s ease */
+[data-m-card] [data-m-card-back] { position: absolute; inset: 0; opacity: 0; transition: opacity .3s ease; }
+[data-m-card-thumb] { position: relative; display: block; }
+[data-m-card-thumb]:hover [data-m-card-back] { opacity: 1; }
+[data-m-card] [data-m-card-wish] { opacity: 0; transition: all .3s ease; }
+[data-m-card]:hover [data-m-card-wish] { opacity: 1; visibility: visible; }
+
+/* 8-1) 슬라이더 틀: 넘친 카드가 화면 폭을 늘리지 않게(휴대폰 확대 축소 방지) */
+[data-m-slider] { position: relative; overflow: hidden; }
+[data-m-slider] .swiper-slide { flex-shrink: 0; }
+
+/* 9) 맨 위로: 300px 넘으면 나타남 all 0.3s ease, position sticky */
+[data-m-totop] { position: sticky; bottom: 0; opacity: 0; visibility: hidden; transition: all .3s ease; z-index: 1; }
+[data-m-totop].is-show { opacity: 1; visibility: visible; }
+
+/* 10) 버튼·입력칸 (elevato --btn-transition / border 300ms) */
+[data-m-btn] { transition: background-color .3s cubic-bezier(.42, 0, .58, 1), border-color .3s cubic-bezier(.42, 0, .58, 1), color .3s cubic-bezier(.42, 0, .58, 1); }
+[data-m-field] { transition: border 300ms ease; }
+
+/* 11) 영상 PC/모바일 전환 1200px(elevato .mobile-content-show/hide) */
+.m-pc-only { display: block !important; }
+.m-mo-only { display: none !important; }
+@media (max-width: 1200px) { .m-pc-only { display: none !important; } .m-mo-only { display: block !important; } }
+[data-m-video] video { display: block; width: 100%; height: auto; object-fit: cover; }
+
+/* 12) 장바구니 아래 화살표 안내(elevato fade_move_down 2s ease-in-out 무한) */
+[data-m-hint-down] { animation: m-fade-move-down 2s ease-in-out infinite; }
+@keyframes m-fade-move-down { 0% { transform: translate(0, -10px); opacity: 0; } 50% { opacity: 1; } 100% { transform: translate(0, 10px); opacity: 0; } }
+
+/* 13) 매장 페이지 제목 sticky + 흐림(elevato #stores .sc-title) */
+[data-m-sticky-title] { position: sticky; top: 0; z-index: 3; background-color: rgb(255 255 255 / 75%); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); transition: all .3s ease; }
+
+/* 14) 상세 오른쪽 정보 sticky(elevato .detail-right .sticky-element) */
+[data-m-sticky] { position: sticky; top: calc(var(--m-top-bnr-h, 0px) + var(--m-header-h)); max-height: calc(100svh - (var(--m-top-bnr-h, 0px) + var(--m-header-h))); overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; }
+[data-m-sticky]::-webkit-scrollbar { display: none; }
+
+/* 15) 동작 줄이기: 움직임을 없애지 않고 0.2s 디졸브로(D68·D69). elevato 자체는 이 설정을 따로 처리하지 않는다 */
+@media (prefers-reduced-motion: reduce) {
+  [data-m-pagein].is-in { animation-duration: .2s; animation-timing-function: linear; }
+  [data-m-header] { transition: opacity .2s linear, visibility .2s linear !important; }
+  html.m-scroll-down:not(.m-menu-open) [data-m-header] { transform: none !important; opacity: 0; visibility: hidden; }
+  [data-m-menu], [data-m-search], [data-m-totop], [data-m-card] [data-m-card-back], [data-m-card] [data-m-card-wish] { transition-duration: .2s !important; transition-timing-function: linear !important; transition-delay: 0s !important; }
+  [data-m-menu-toggle] .m-lines i { transition: opacity .2s linear !important; }
+  [data-m-acc-icon] { transition: none; }
+  [data-m-hint-down] { animation: m-fade-only 2s linear infinite; }
+  @keyframes m-fade-only { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+}
