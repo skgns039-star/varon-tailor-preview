@@ -89,10 +89,10 @@ def header():
         else:
             m.append(f'<li class="cate_li"><a href="{href}">{lab}</a></li>')
     return f"""<header data-m-header>
- <div id="p-header"><nav class="header-top"><div id="p-main-menu"><ul class="prd_cate">{''.join(p)}</ul></div></nav><div class="header-top-bg" data-m-mega-bg></div><div class="menu-bg"></div></div>
+ <div id="p-header"><nav class="header-top"><div id="p-main-menu"><ul class="prd_cate">{''.join(p)}</ul></div></nav><div class="header-top-bg" data-m-mega-bg></div></div>
  <div id="m-header"><nav class="header-bottom"><div class="nav-wrap" data-m-header-bar><div class="Logo"><a href="index.html">{logo(20)}</a></div><a href="#none" id="menu-open" class="menu-icon" data-m-menu-toggle aria-label="메뉴" aria-expanded="false"><span class="m-lines"><i></i><i></i><i></i></span></a></div>
   <aside id="m-main-menu" data-m-menu><div class="menulist"><nav data-m-acc="menu"><ul class="prd_cate">{''.join(m)}</ul></nav></div>
-   <form class="m-search" action="shop-men.html"><input type="text" placeholder="" aria-label="검색"></form></aside></nav></div>
+   <form class="m-search" action="shop-men.html"><input type="text" data-m-field placeholder="" aria-label="검색"></form></aside></nav></div>
 </header>"""
 
 def footer():
@@ -148,7 +148,7 @@ def build():
  <video class="m-pc-only" autoplay muted loop playsinline poster="{ppc}" {f'src="{vpc}"' if vpc else ''}></video>
  <video class="m-mo-only" autoplay muted loop playsinline poster="{pmo}" {f'src="{vmo}"' if vmo else ''}></video>
  <p class="sub" data-lines="{lines}"></p></figure></div></a></div>
-<div class="main-bnr-wrap header-white" data-m-header-white><a href="wedding.html" class="collection-band"><b>{BR} Collection</b><span>Cut for your shoulders, finished by hand in our own workroom.<br>Made for the day you will remember.</span></a></div>
+<div class="main-bnr-wrap header-white" data-m-header-white><a href="wedding.html" class="collection-band"><b>{BR} Collection</b><span>Tailored to the line of your shoulders, cut and finished by hand in our own workroom.<br>Made for the day you will remember.</span></a></div>
 <div class="prd-slide-wrap" data-m-slider-wrap><div class="swiper" data-m-slider="free"><ul class="swiper-wrapper prdList-slide">{slides}</ul></div>
  <button class="nav prev" data-m-prev aria-label="이전">{ARROW_L}</button><button class="nav next" data-m-next aria-label="다음">{ARROW_R}</button></div>
 <div class="main-bnr-wrap row header-white" data-m-header-white>{bnr_pair('shop-men.html', 'shop-women.html')}</div>
@@ -184,7 +184,7 @@ def build():
     page("mtm.html", f"M.T.M | {BR}", mtm)
 
     wedding = f"""<div id="wedding">
-<section class="main-bnr-wrap row header-white" data-m-header-white>{bnr_pair('shop-men.html', 'shop-women.html')}</section>
+<section class="main-bnr-wrap row">{bnr_pair('shop-men.html', 'shop-women.html')}</section>
 <section class="wedding-2"><figure>{img('rental-feature', '')}</figure><figcaption><h1>‘THE WEDDING LINE 2026’</h1><p>2026 WEDDING SUIT - 두 사람의 하루를 위한 예복.</p><a href="shop-men.html">DISCOVER THE PIECES</a></figcaption></section></div>"""
     page("wedding.html", f"Wedding Line | {BR}", wedding)
 
@@ -204,6 +204,9 @@ def build():
            ("가봉과 수선", ["가봉은 1~2회 진행합니다. 완성 후에도 몸이 바뀌면 매장에서 다시 맞춰 드립니다.", "체중 조절 계획이 있으시면 마지막 가봉 일정을 그에 맞춰 잡는 것이 좋습니다.", "완성 후 처음 입어 보셨을 때 불편한 곳이 있으면 바로 말씀해 주세요. 소매 길이, 바지 기장, 허리 품은 매장에서 다시 손봐 드립니다.", "오래 입으신 수트의 단추 교체나 안감 수선도 상담해 드립니다."]),
            ("예복 준비", ["신랑 예복은 예식 2~3개월 전에 상담을 시작하시길 권합니다.", "혼주 정장과 들러리 정장도 함께 상담할 수 있습니다.", "본식과 2부 예복을 따로 준비하시는 경우, 두 벌의 색과 원단이 사진에서 어떻게 보일지 함께 비교해 드립니다.", "웨딩 촬영 일정이 본식보다 앞선다면 촬영 날짜에 맞춰 제작 순서를 조정합니다. 상담 때 촬영일을 꼭 알려 주세요.", "셔츠·타이·행커치프·구두 같은 소품도 수트에 맞춰 함께 골라 드립니다."]),
            ("결제 안내", [f"결제 방법과 환불 기준 {NEED}"]),
+           ("원단 안내", ["사계절 울, 플란넬, 린넨, 벨벳 등 계절과 자리에 맞는 원단을 준비해 두고 있습니다. 같은 네이비라도 결과 광택이 달라 사진에서 보이는 느낌이 다르므로, 매장 조명과 창가 빛에서 함께 비교해 보시길 권합니다.", "예복은 실내 예식장 조명에서 은은하게 빛나는 원단을, 비즈니스 수트는 구김이 덜하고 오래 입어도 형태가 유지되는 원단을 주로 추천합니다.", "원단 견본은 상담 때 직접 만져 보고 고르실 수 있습니다."]),
+           ("관리 방법", ["입은 뒤에는 넓은 어깨 옷걸이에 걸어 하루 정도 바람을 쐬어 주세요. 잦은 드라이클리닝은 원단을 상하게 하므로 얼룩이 생겼을 때만 맡기시는 것이 좋습니다.", "바지는 밑단을 집게로 잡아 거꾸로 걸어 두면 주름이 자연스럽게 펴집니다.", "장기간 보관하실 때는 통기성 있는 커버를 씌워 직사광선을 피해 주세요."]),
+           ("교환·환불 안내", [f"맞춤 제작 상품은 재단을 시작한 뒤에는 교환·환불이 어렵습니다. 자세한 기준 {NEED}", "가봉과 완성 단계에서 불편한 부분은 수선으로 맞춰 드립니다."]),
            ("매장 안내", [f"{n}: {a} · {t}" for n, _, a, t in STORES])]
     g = "".join(f'<div class="grp"><h3>{h}</h3>{"".join(f"<p>{x}</p>" for x in ps)}</div>' for h, ps in faq)
     page("guide.html", f"Guide | {BR}", f'<div class="layout-center"><div class="titleArea"><h2>Guide</h2></div><div class="faq">{g}</div></div>')
@@ -232,23 +235,24 @@ def build():
 
     gal = ["prd-11-front", "prd-11-back", "detail-01", "detail-02", "detail-03", "detail-04", "prd-01-front", "prd-01-back", "prd-03-front", "prd-03-back"]
     sl = "".join(f'<div class="swiper-slide">{img(s, "")}</div>' for s in gal)
-    detail = f"""<section class="detail-top"><div class="detail-right" data-m-slider-wrap><div class="sticky" data-m-sticky><div class="swiper" data-m-slider="detail"><div class="swiper-wrapper">{sl}</div></div>
+    detail = f"""<section class="detail-top"><div class="detail-right" data-m-slider-wrap><div class="sticky" data-m-sticky><div class="swiper" data-m-slider="detail"><div class="swiper-wrapper">{sl}</div></div><div class="swiper-pagination" data-m-dots></div>
 <button class="nav prev" data-m-prev aria-label="이전">{ARROW_L}</button><button class="nav next" data-m-next aria-label="다음">{ARROW_R}</button></div></div>
 <div class="detail-left"><div class="name">Ivory Tweed Jacket</div><div class="detail-info"><p>가격 {NEED}<br>Wool | Ivory | Jacket</p><p>모든 제품은 매장 상담 후 고객님의 체형을 직접 재어<br>제작합니다. 가봉 일정은 상담 때 함께 정합니다.</p></div>
 <div class="detailArea"><div class="sheet"><figure>{img('prd-11-front', '')}<figcaption>JACKET</figcaption></figure><figure>{img('detail-01', '')}<figcaption>FABRIC</figcaption></figure><figure>{img('detail-02', '')}<figcaption>BUTTON</figcaption></figure><figure>{img('detail-03', '')}<figcaption>LAPEL</figcaption></figure></div></div></div></section>
+<div class="sticky-watch" data-m-sticky-watch style="height:1px"></div>
 <div class="detail-bottom-bnr"><div class="divide"><figure>{img('detail-banner', '')}</figure></div><div class="divide"><div class="dbb-text-inner">{logo()}<p>광주·순천 바론테일러 매장에 방문 예약을 남기시면<br>체형을 재고 원단을 함께 고를 수 있습니다.</p>
 <div class="btn-wrap"><a class="btn" data-m-btn href="{KAKAO}" target="_blank" rel="noopener">방문 예약하기</a><a class="btn" data-m-btn href="stores.html">매장 찾기</a></div></div></div></div>"""
     page("detail.html", f"Ivory Tweed Jacket | {BR}", detail, "", True)
 
     def board(fn, title, rows, paginate=False, search=False, read="notice-read.html"):
         if rows:
-            r = "".join(f'<div class="tr"><div class="number">{n}</div><div class="subject"><a href="{read}">{s}</a></div><div class="board-right"><div class="writer">{BR}</div><div class="date">{d}</div></div></div>' for n, s, d in rows)
+            r = "".join(f'<div class="tr"><div class="number">{n}</div><div class="subject"><div class="prd_text"><a href="{read}">{s}</a></div><div class="board-right"><div class="writer">{BR}</div><div class="date">{d}</div></div></div></div>' for n, s, d in rows)
             lst = f'<div class="boardList">{r}</div>'
         else:
             lst = '<p class="board-empty">등록된 글이 없습니다.</p>'
         more = "<a>2</a><a>3</a><a>4</a><a>5</a>" if len(rows) > 5 else ""
         pg = f'<div class="ec-paginate"><a>&lsaquo;</a><a class="on">1</a>{more}<a>&rsaquo;</a></div>' if paginate else ""
-        sr = '<form class="boardSearch" onsubmit="return false"><select aria-label="기간"><option>일주일</option><option>한달</option><option>세달</option><option>전체</option></select><select aria-label="항목"><option>제목</option><option>내용</option></select><input type="text" aria-label="검색어"><a class="s-btn">검색</a></form>' if search else ""
+        sr = '<form class="boardSearch" onsubmit="return false"><select data-m-field aria-label="기간"><option>일주일</option><option>한달</option><option>세달</option><option>전체</option></select><select data-m-field aria-label="항목"><option>제목</option><option>내용</option></select><input type="text" data-m-field aria-label="검색어"><a class="s-btn">검색</a></form>' if search else ""
         page(fn, f"{title} | {BR}", f'<div class="layout-center board-pkg{"" if rows else " empty"}"><div class="titleArea"><h2 class="light">{title}</h2></div>{lst}{pg}{sr}</div>')
     board("notice.html", "공지사항", [(3, "예식 시즌 상담 예약 안내", "2026-11-02"), (2, "체중 조절은 언제 하는 것이 좋을까요?", "2026-10-14"), (1, "바론테일러 홈페이지를 열었습니다", "2026-10-01")], paginate=True, search=True)
     rv = ["[Wedding] 웨딩거리 매장에서 맞춘 신랑 예복 후기", "[Wedding] 혼주 정장까지 한 번에 준비했어요", "[Business] 첫 출근 수트, 어깨가 편해요", "[Wedding] 아이보리 턱시도 가봉 두 번 받은 후기",
@@ -271,9 +275,9 @@ def build():
 <p class="date-hit">Hit : 128</p><div class="share">{''.join('<a></a>' for _ in range(7))}</div><div style="padding:60px 0;font-size:var(--fs)">겨울 예식을 준비하시는 분들을 위한 상담 이벤트 안내입니다. 자세한 내용 {NEED}</div>
 <a class="btn" data-m-btn href="event.html">LIST</a><p style="margin:50px 0 20px;font-size:var(--fs)">관리자에게만 댓글 작성 권한이 있습니다.</p><div style="border-top:1px solid #000;margin-top:30px;padding-top:40px;text-align:right;font-size:var(--fs)"><small style="font-size:10px">NEXT POST</small><br>가을 비즈니스 수트 이벤트</div></div></div>""")
 
-    posters = [("photo", None), ("#b88a2e", "NOV"), ("#7a2f2c", "DEC"), ("#7a5a43", "SEPT"), ("#5aa59a", "AUG"), ("#5aa59a", "AUG"), ("#2f3a4a", "JUL"), ("#8a8f7a", "JUN"), ("#b88a2e", "MAY"), ("#7a2f2c", "APR"), ("#5aa59a", "MAR"), ("#7a5a43", "FEB"), ("#2f3a4a", "JAN"), ("#8a8f7a", "DEC")]
-    tags = ["예복 상담 이벤트", "겨울 예복 패키지", "혼주 정장 패키지", "비즈니스 수트 패키지", "스냅 촬영 패키지", "얼리버드 코트", "여름 린넨 수트", "커플 예복 패키지", "봄 예복 패키지", "혼주 정장 패키지", "졸업 수트 패키지", "설 맞이 수트", "새해 첫 수트", "연말 모임 수트"]
-    titles = ["겨울 예복 상담 이벤트", "11월 한정 예복 이벤트", "12월 혼주 정장 이벤트", "9월 비즈니스 수트 이벤트 (종료)", "8월 스냅 촬영 이벤트 (종료)", "8월 얼리버드 코트 이벤트 (종료)", "7월 린넨 수트 이벤트 (종료)", "6월 커플 예복 이벤트 (종료)", "5월 봄 예복 이벤트 (종료)", "4월 혼주 정장 이벤트 (종료)", "3월 졸업 수트 이벤트 (종료)", "2월 설 맞이 이벤트 (종료)", "1월 새해 수트 이벤트 (종료)", "12월 연말 수트 이벤트 (종료)"]
+    posters = [("photo", None), ("#b88a2e", "NOV"), ("#7a2f2c", "DEC"), ("#7a5a43", "SEPT"), ("#5aa59a", "AUG"), ("#5aa59a", "AUG"), ("#2f3a4a", "JUL"), ("#8a8f7a", "JUN"), ("#b88a2e", "MAY"), ("#7a2f2c", "APR"), ("#5aa59a", "MAR"), ("#7a5a43", "FEB"), ("#2f3a4a", "JAN")]
+    tags = ["예복 상담 이벤트", "겨울 예복 패키지", "혼주 정장 패키지", "비즈니스 수트 패키지", "스냅 촬영 패키지", "얼리버드 코트", "여름 린넨 수트", "커플 예복 패키지", "봄 예복 패키지", "혼주 정장 패키지", "졸업 수트 패키지", "설 맞이 수트", "새해 첫 수트"]
+    titles = ["겨울 예복 상담 이벤트", "11월 한정 예복 이벤트", "12월 혼주 정장 이벤트", "9월 비즈니스 수트 이벤트 (종료)", "8월 스냅 촬영 이벤트 (종료)", "8월 얼리버드 코트 이벤트 (종료)", "7월 린넨 수트 이벤트 (종료)", "6월 커플 예복 이벤트 (종료)", "5월 봄 예복 이벤트 (종료)", "4월 혼주 정장 이벤트 (종료)", "3월 졸업 수트 이벤트 (종료)", "2월 설 맞이 이벤트 (종료)", "1월 새해 수트 이벤트 (종료)"]
     ev = ""
     for i, (c, m) in enumerate(posters):
         inner = f'<div class="poster photo">{img("prd-02-front", "")}</div>' if c == "photo" else f'<div class="poster" style="background:{c}"><span class="seal"></span><span class="m">{m}</span><span class="p">PROMOTION</span><span class="e">EVENT</span><span class="tag">{tags[i]}</span></div>'

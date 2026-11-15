@@ -98,15 +98,20 @@
   }
 
   /* 6) 높이 접기·펼치기 = elevato jQuery 3.6.0 slideDown/slideUp. 그 사이트는 jquery.easing이 swing을 easeOutQuad로 바꿔 둠(실측). 기본 400ms */
+  /* jQuery처럼 height와 위아래 padding·margin을 함께 0 ↔ 원래 값으로 움직인다(padding이 있는 칸이 첫 프레임에 튀지 않게) */
+  var BOX = ['height', 'paddingTop', 'paddingBottom', 'marginTop', 'marginBottom'];
+  function boxOf(el) { var cs = getComputedStyle(el), o = {}; BOX.forEach(function (k) { o[k] = cs[k]; }); return o; }
+  function zeroBox() { var o = {}; BOX.forEach(function (k) { o[k] = '0px'; }); return o; }
   function slide(el, open, ms, delay) {
-    if (el._mAnim) el._mAnim.cancel();
-    var reduce = RM.matches;
-    var start = el.classList.contains('is-open') ? el.getBoundingClientRect().height : 0;
+    var reduce = RM.matches, wasOpen = el.classList.contains('is-open');
+    var cur = el._mAnim ? boxOf(el) : (wasOpen ? null : zeroBox());   // 움직이는 중이면 지금 모습에서 이어 간다
+    if (el._mAnim) { el._mAnim.cancel(); el._mAnim = null; }
+    if (!open && !wasOpen) return;
     el.classList.add('is-open');
-    var end = open ? el.scrollHeight : 0;
-    if (!open && !start) { el.classList.remove('is-open'); return; }
-    var kf = reduce ? [{ opacity: open ? 0 : 1, height: end + 'px' }, { opacity: open ? 1 : 0, height: end + 'px' }]
-                    : [{ height: start + 'px' }, { height: end + 'px' }];
+    var full = boxOf(el);                                              // 다 펼친 원래 값
+    if (!cur) cur = full;
+    var kf = [cur, open ? full : zeroBox()];
+    if (reduce) { kf[0] = Object.assign({ opacity: open ? 0 : 1 }, kf[0]); kf[1] = Object.assign({ opacity: open ? 1 : 0 }, kf[1]); }  // 줄이기: 0.2s 선형 디졸브(높이도 0.2s라 아래 내용이 한 프레임에 튀지 않음, D69)
     var a = el.animate(kf, { duration: reduce ? 200 : ms, delay: reduce ? 0 : (delay || 0), easing: reduce ? 'linear' : 'cubic-bezier(.25,.46,.45,.94)', fill: 'both' });
     el._mAnim = a;
     a.onfinish = function () { a.cancel(); el._mAnim = null; if (!open) el.classList.remove('is-open'); };
