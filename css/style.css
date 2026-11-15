@@ -39,7 +39,7 @@ p{font-size:var(--fs-m);line-height:1.5}
 #p-header .cate_li>a:hover{font-weight:500;letter-spacing:-.4px}
 #p-header .cate_sub{position:absolute;top:12px;left:auto;padding-top:3rem;white-space:nowrap}
 #p-header .cate_sub a{display:block;margin-bottom:15px;font-size:var(--fs-l);line-height:1;color:#000}
-html.m-mega-active #m-header{display:none}
+#m-header{display:none}
 #m-header .Logo{color:var(--m-header-fg)}
 @media (max-width:1200px){
   #p-header{display:none}
@@ -68,7 +68,8 @@ main.no-top{padding-top:0}
 main.layout-contents{padding-bottom:46px}main.is-home{padding-bottom:0}
 @media (max-width:1200px){main.layout-contents{padding-bottom:111px}main.is-home{padding-bottom:0}}
 #about{padding-bottom:419px}.layout-center.board-pkg{padding-bottom:93px}.layout-center.board-pkg.empty{padding-bottom:43px}
-@media (max-width:1200px){#about{padding-bottom:160px}.layout-center.board-pkg{padding-bottom:262px}.layout-center.board-pkg.empty{padding-bottom:301px}}
+@media (max-width:1200px){#about{padding-bottom:160px}.layout-center.board-pkg{padding-bottom:136px}.layout-center.board-pkg.empty{padding-bottom:155px}}
+@media (max-width:600px){.layout-center.board-pkg{padding-bottom:57px}.layout-center.board-pkg.empty{padding-bottom:77px}}
 .section-pad{padding:0 var(--center-gap)}
 .back-to-top{text-align:center;margin-top:5rem;padding:0 0 2rem}
 .line-btn{text-decoration:underline;display:inline-block;font-size:var(--fs);line-height:1}
@@ -100,10 +101,10 @@ main.layout-contents{padding-bottom:46px}main.is-home{padding-bottom:0}
 .prd-slide-wrap .swiper{margin:0 -5px;cursor:grab}
 .prd-slide-wrap .swiper-slide{width:242px;padding:10px 5px}
 @media (min-width:600px) and (max-width:1200px){.prd-slide-wrap .swiper-slide{width:467px}}
-.prd-slide-wrap .nav{position:absolute;top:50%;z-index:5;width:24px;height:24px;margin-top:-12px;cursor:pointer;background:none;border:0}
-.prd-slide-wrap .nav svg{width:24px;height:24px;stroke:#000;stroke-width:1.2;fill:none}
-.prd-slide-wrap .nav.prev{left:22px}.prd-slide-wrap .nav.next{right:22px}
-.prd-slide-wrap .nav.swiper-button-disabled{opacity:.35;cursor:default}
+.prd-slide-wrap .nav{position:absolute;top:50%;z-index:5;width:38px;height:38px;margin-top:-19px;cursor:pointer;background:none;border:0}
+.prd-slide-wrap .nav svg{width:38px;height:38px;stroke:#000;stroke-width:.8;fill:none}
+.prd-slide-wrap .nav.prev{left:16px}.prd-slide-wrap .nav.next{right:16px}
+.prd-slide-wrap .nav.swiper-button-disabled{cursor:default}
 @media (max-width:1200px){.prd-slide-wrap .nav{display:none}}
 
 /* product card (M8) */
@@ -185,7 +186,7 @@ main.layout-contents{padding-bottom:46px}main.is-home{padding-bottom:0}
 .boardSearch select{width:169px;padding:0 35px 0 10px;-webkit-appearance:none;appearance:none;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='none' stroke='%23000'/%3E%3C/svg%3E") no-repeat right 12px center}
 .boardSearch input{flex:1;padding:0 10px}
 .boardSearch .s-btn{width:168px;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
-@media (max-width:1200px){.boardSearch{flex-wrap:wrap;gap:8px 0}.boardSearch select{flex:1}.boardSearch input{flex:1 1 100%}.boardSearch .s-btn{flex:1 1 100%}}
+@media (max-width:1200px){.boardSearch{flex-direction:column;gap:10px;margin:40px 0 0}.boardSearch>*{margin:0;width:100%!important;flex:none!important;height:43px!important}}
 .board-empty{padding:65px 0;text-align:center;font-size:var(--fs)}
 .btn{display:inline-block;width:150px;padding:15px 5px;border:1px solid #000;background:#fff;color:#000;text-align:center;font-size:16px;line-height:10px;transition:all .3s}
 .btn.s-btn{background:#000;color:#fff}
@@ -198,6 +199,7 @@ main.layout-contents{padding-bottom:46px}main.is-home{padding-bottom:0}
 .boardRead .content p{font-size:var(--fs);margin-bottom:.4em}
 .boardRead .content img{margin:10px auto}
 .btnArea{margin:30px 0;display:flex;gap:13px}
+@media (max-width:1200px){.btnArea .btn{width:100%}}
 .boardView .titleArea{padding:0 0 20px}
 .boardView h2.big{font-size:2rem;font-weight:500;text-transform:none}
 .date-hit{text-align:center;color:var(--sub);font-size:var(--fs);margin-bottom:20px}
@@ -284,7 +286,7 @@ main.layout-contents{padding-bottom:46px}main.is-home{padding-bottom:0}
 .basket-right .btn{width:100%;margin-bottom:10px}
 .basket-right h4{font-size:12px;font-weight:500;margin:30px 0 10px}
 .basket-right li{font-size:var(--fs);line-height:1.8}
-@media (max-width:1200px){.basket{flex-direction:column}.basket-left,.basket-right{padding:0}}
+@media (max-width:1200px){.basket{flex-direction:column;padding-bottom:50px}.basket-left,.basket-right{padding:0}.basket-right{margin-top:-11px}}
 
 /* footer */
 footer{position:relative;z-index:1;background:var(--footer-bg)}

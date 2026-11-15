@@ -61,8 +61,8 @@ def logo(size=None):
     st = f' style="font-size:{size}px"' if size else ""
     return f'<span class="logo-txt"{st}>{BR}</span>'
 
-ARROW_L = '<svg viewBox="0 0 24 24"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>'
-ARROW_R = '<svg viewBox="0 0 24 24"><path d="M4 12h16M14 6l6 6-6 6"/></svg>'
+ARROW_L = '<svg viewBox="0 0 24 24"><path d="M22 12H2M8 6l-6 6 6 6"/></svg>'
+ARROW_R = '<svg viewBox="0 0 24 24"><path d="M2 12h20M16 6l6 6-6 6"/></svg>'
 
 MENU = [
     ("cate-logo", "index.html", None, [("About", "about.html"), ("Bespoke", "bespoke.html"), ("M.T.M", "mtm.html")]),
@@ -193,7 +193,7 @@ def build():
         r = "".join(f'<div class="sc-list-text"><span>{k}</span><span>{v}</span></div>' for k, v in rows)
         q = html.escape(a.split(" (")[0])
         return f"""<div class="sc-box"><div class="sc-title" data-m-sticky-title><h1>{BR} {en}</h1></div><div class="sc-list-wrapper"><div class="sc-list"><div class="sc-list-title"><h1>{n}({en})</h1></div>{r}</div></div></div>
-<section class="store-map"><iframe title="{n} 지도" loading="lazy" src="https://maps.google.com/maps?q={q}&output=embed"></iframe></section>"""
+<section class="store-map"><iframe title="{n} 지도" src="https://maps.google.com/maps?q={q}&output=embed"></iframe></section>"""
     stores = f"""<div id="stores"><div class="stores-content"><div class="stores-top"><figure>{img('stores-hero', '')}</figure></div>
 {''.join(store_box(*s) for s in STORES)}</div></div>"""
     page("stores.html", f"Store | {BR}", stores)
@@ -268,7 +268,7 @@ def build():
 <div class="content">{content}</div></div><div class="btnArea"><a class="btn" data-m-btn href="{'review.html' if rating else 'notice.html'}">목록</a></div></div>"""
         page(fn, f"{title} | {BR}", body)
     read("notice-read.html", "공지사항", "체중 조절은 언제 하는 것이 좋을까요?", "2026-10-14 11:20:00",
-         "<p style='text-align:center'>안녕하세요, 바론테일러입니다.</p><p style='text-align:center'>상담 때 가장 많이 받는 질문 가운데 하나를 정리했습니다.</p><br><p style='text-align:center'>예식을 앞두고 체중을 조절하실 계획이라면</p><p style='text-align:center'>마지막 가봉 전까지 목표 체중에 맞춰 두시는 것이 좋습니다.</p><p style='text-align:center'>가봉 이후 체중이 크게 바뀌면 허리와 어깨선을 다시 잡아야 할 수 있습니다.</p><p style='text-align:center'>일정이 애매하다면 상담 때 편하게 말씀해 주세요. 가봉 날짜를 함께 조정해 드립니다.</p><br><p style='text-align:center'>운동으로 몸을 키우실 계획이라면 어깨와 가슴 품에 여유를 조금 더 두고 재단합니다.</p><p style='text-align:center'>반대로 체중을 줄이실 계획이라면 첫 가봉을 조금 늦게 잡는 편이 좋습니다.</p><p style='text-align:center'>어느 쪽이든 마지막 가봉에서 한 번 더 맞추기 때문에 너무 걱정하지 않으셔도 됩니다.</p><br><p style='text-align:center'>궁금한 점은 오픈채팅이나 매장 전화로 언제든 물어봐 주세요.</p>")
+         "<p style='text-align:center'>안녕하세요, 바론테일러입니다.</p><p style='text-align:center'>상담 때 가장 많이 받는 질문 가운데 하나를 알려 드립니다.</p><br><p style='text-align:center'>예식을 앞두고 체중을 조절하실 계획이라면</p><p style='text-align:center'>마지막 가봉 전까지 목표 체중에 맞춰 두시는 것이 좋습니다.</p><p style='text-align:center'>가봉 이후 체중이 크게 바뀌면 허리와 어깨선을 다시 잡아야 할 수 있습니다.</p><p style='text-align:center'>일정이 애매하다면 상담 때 편하게 말씀해 주세요. 가봉 날짜를 함께 조정해 드립니다.</p><br><p style='text-align:center'>운동으로 몸을 키우실 계획이라면 어깨와 가슴 품에 여유를 조금 더 두고 재단합니다.</p><p style='text-align:center'>반대로 체중을 줄이실 계획이라면 첫 가봉을 조금 늦게 잡는 편이 좋습니다.</p><p style='text-align:center'>어느 쪽이든 마지막 가봉에서 한 번 더 맞추기 때문에 너무 걱정하지 않으셔도 됩니다.</p><br><p style='text-align:center'>궁금한 점은 오픈채팅이나 매장 전화로 언제든 물어봐 주세요.</p>")
     read("review-read.html", "Review", "[Wedding] 웨딩거리 매장에서 맞춘 신랑 예복 후기", "26.11.28",
          f"<p>상견례 끝나고 바로 예약해서 광주점에 다녀왔어요. 치수를 생각보다 훨씬 많이 재셔서 놀랐습니다.</p>{img('review-01', '')}<p>가봉 때 한쪽 어깨가 조금 낮다고 하셔서 그 부분까지 맞춰 주셨어요.</p>{img('review-02', '')}<p>본식 날 사진을 받아 보니 재킷이 들뜨지 않고 깔끔하게 떨어져서 만족합니다.</p>{img('review-03', '')}", rating=True)
     page("event-read.html", f"Event | {BR}", f"""<div class="layout-center"><div class="boardView" style="margin-top:50px"><div class="titleArea"><h2 class="big">겨울 예복 상담 이벤트</h2></div>
