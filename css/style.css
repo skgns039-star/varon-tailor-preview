@@ -86,14 +86,14 @@ main.layout-contents{padding-bottom:46px}main.is-home{padding-bottom:0}
 .main-bnr-wrap figcaption small{text-decoration:underline;font-size:var(--fs-l);line-height:1}
 .hero{height:calc(var(--vh,9px)*100);overflow:hidden}
 .hero figure{position:relative;width:100%;height:100%;background:#fff}
-.hero video{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#2b2b2b}
+.hero video,.hero-still,.hero-still img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#2b2b2b}
 .hero .sub{position:absolute;left:0;right:0;top:calc(100vw*9/16*.915);text-align:center;color:#fff;font-family:"Noto Sans KR",sans-serif;font-weight:400;font-size:22px;line-height:28px;text-shadow:0 0 6px rgba(0,0,0,.35);transform:translateY(-100%)}
 .main-bnr-wrap>a.collection-band,.collection-band{aspect-ratio:2160/357;display:block;padding-top:5.2vw;text-align:center;text-transform:uppercase;background:#fff}
 .collection-band b{display:block;font-weight:500;font-size:2.76vw;line-height:1;letter-spacing:-.01em}
 .collection-band span{display:block;font-weight:400;font-size:1.95vw;line-height:1.6vw;margin-top:.85vw;letter-spacing:-.015em}
 @media (max-width:1200px){
   .main-bnr-wrap.row{flex-direction:column}
-  .hero video{aspect-ratio:9/16}
+  .hero video,.hero-still,.hero-still img{aspect-ratio:9/16}
   .hero .sub{top:auto;bottom:calc(100% - 100vw*16/9*.9);font-size:13px;line-height:17px;transform:none}
   .main-bnr-wrap figcaption{bottom:calc(var(--gap)*5)}
 }
@@ -374,3 +374,7 @@ footer{position:relative;z-index:1;background:var(--footer-bg)}
 @media (max-width:1200px){.contact-page{padding-bottom:90px}.ct-wrap{grid-template-columns:1fr;gap:56px}.ct-hero{padding:20px 0 40px}}
 @media (max-width:600px){.ct-types{grid-template-columns:1fr}}
 .ct-photo{margin-bottom:28px}.ct-photo img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+
+.cb-links{margin:14px 0 0!important;font-size:var(--fs-s)!important}.cb-links a{text-decoration:underline;color:#efebe3}
+.ct-status a{text-decoration:underline}
+.hero-still{position:relative}.hero-still::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.25) 45%,rgba(0,0,0,.55));pointer-events:none}

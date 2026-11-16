@@ -21,6 +21,6 @@
       var v = f.type === 'radio' ? !!form.querySelector('input[name=' + f.name + ']:checked') : f.type === 'checkbox' ? f.checked : f.value.trim() !== '' && f.validity.valid;
       f.setAttribute('aria-invalid', String(!v)); hp.textContent = v ? '' : '필수 항목을 확인해 주세요.'; ok = ok && v;
     });
-    form.querySelector('.ct-status').textContent = ok ? '입력 내용을 확인했습니다. 문의 접수 방법 [확인 필요]' : '';
+    form.querySelector('.ct-status').innerHTML = ok ? '입력 내용을 확인했습니다. 문의는 <a href="https://pf.kakao.com/_xkezVl" target="_blank" rel="noopener">카카오톡 상담</a> 또는 <a href="https://talk.naver.com/ct/wsi4txj" target="_blank" rel="noopener">네이버 톡톡 상담</a>(순천점)으로 보내 주세요.' : '';
   });
 })();
