@@ -378,3 +378,4 @@ footer{position:relative;z-index:1;background:var(--footer-bg)}
 .cb-links{margin:14px 0 0!important;font-size:var(--fs-s)!important}.cb-links a{text-decoration:underline;color:#efebe3}
 .ct-status a{text-decoration:underline}
 .hero-still{position:relative}.hero-still::after{content:"";position:absolute;left:0;right:0;bottom:0;height:40%;background:linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.25) 45%,rgba(0,0,0,.55));pointer-events:none}
+.hero-still::before{content:"";position:absolute;left:0;right:0;top:0;height:22%;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,0));pointer-events:none;z-index:1}
