@@ -425,3 +425,6 @@ html.lb-open,html.lb-open body{overflow:hidden}
 .archive.lookbook .thumb-box{display:block;cursor:zoom-in}
 .archive.lookbook .thumb-box img{aspect-ratio:3/4;height:auto;object-fit:cover}
 @media (max-width:1200px){.lk-intro{padding:26px 26px 0}.lk-intro h1{font-size:calc(var(--fs-l)*1.2)}.archive.lookbook .prd-list-wrap{padding:26px 26px 0}}
+@media (min-width:768px) and (max-width:1200px){.archive.lookbook .prdList{grid-template-columns:1fr 1fr}}
+/* 11/23 대표님(추천 적용): 1200 이하 홈만 첫 화면 흰 막 효과 없음 → 영상이 바로 보이게. PC·다른 페이지는 그대로 */
+@media (max-width:1200px){#pageOverlay.pagein-home{display:none}}
