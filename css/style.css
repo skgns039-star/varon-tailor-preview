@@ -416,3 +416,12 @@ html.lb-open,html.lb-open body{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.lb-stage{transition:opacity .2s linear}}
 @media (hover:none){[data-m-card-thumb]:hover [data-m-card-back]{opacity:0}}
 [data-lb-item]{-webkit-tap-highlight-color:transparent}
+
+/* lookbook (owner 11/23): 고객 착용 사진, 엘레바또 archive 목록 배치(PC 3단 · <=1200 1단) + 클릭 확대(홈과 같은 lightbox) */
+.lk-intro{padding:78px var(--row-gap) 0}
+.lk-intro h1{font-size:calc(var(--fs-l)*1.5);font-weight:500;line-height:1.2}
+.lk-intro p{margin-top:13px;color:#555;font-size:var(--fs);line-height:1.7;max-width:640px}
+.archive.lookbook .prd-list-wrap{padding-top:39px}
+.archive.lookbook .thumb-box{display:block;cursor:zoom-in}
+.archive.lookbook .thumb-box img{aspect-ratio:3/4;height:auto;object-fit:cover}
+@media (max-width:1200px){.lk-intro{padding:26px 26px 0}.lk-intro h1{font-size:calc(var(--fs-l)*1.2)}.archive.lookbook .prd-list-wrap{padding:26px 26px 0}}
