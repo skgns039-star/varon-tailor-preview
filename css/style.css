@@ -385,7 +385,7 @@ footer{position:relative;z-index:1;background:var(--footer-bg)}
 /* hero video (owner 11/22): elevato 방식 — PC 16:9 전폭 영상, <=1200 9:16 세로 영상(같은 소재를 장면별로 잘라 만든 휴대폰판). 글자가 읽히게 위·아래 어두운 막 */
 .hero .hero-video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#2b2b2b}
 .hero-shade{position:absolute;left:0;top:0;width:100%;aspect-ratio:16/9;pointer-events:none;background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 60%,rgba(0,0,0,.22) 78%,rgba(0,0,0,.5))}
-@media (max-width:1200px){.hero .hero-video,.hero-shade{aspect-ratio:9/16}}
+@media (max-width:1200px){.hero .hero-video,.hero-shade{aspect-ratio:9/16}.hero .sub{display:none}}
 
 /* wedding: WOMEN tile removed (owner 11/16) → single MEN tile. PC wide banner, <=1200 keeps portrait tile */
 .main-bnr-wrap.single .img-box figure{aspect-ratio:2880/1512}.main-bnr-wrap.single .img-box img{object-position:50% 22%}
