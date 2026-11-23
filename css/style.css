@@ -432,3 +432,6 @@ html.lb-open,html.lb-open body{overflow:hidden}
 /* 2026-11-23 bespoke hero = owner portrait photo (998x1498): PC wide slot frames face+tape, <=1200 shows face to scissors */
 .img-full.bespoke img{object-position:50% 15%}
 @media (max-width:1200px){.img-full.bespoke figure{aspect-ratio:4/5}.img-full.bespoke img{object-position:50% 40%}}
+
+/* 2026-11-23 responsive images: <picture> wrapper adds no box (layout identical to bare <img>) */
+picture{display:contents}
